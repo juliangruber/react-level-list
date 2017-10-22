@@ -1,6 +1,6 @@
 {
   "name": "react-level-list",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Live updating leveldb list component for react",
   "scripts": {
     "build": "cd example && webpack",
