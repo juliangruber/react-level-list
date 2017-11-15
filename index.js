@@ -18,9 +18,8 @@ export class List extends React.Component {
   }
 
   remove (key) {
-    this.setState({
-      items: Object.assign(this.state.items, { [key]: null })
-    })
+    delete this.state.items[key]
+    this.setState(this.state)
   }
 
   onput (key, value) {
