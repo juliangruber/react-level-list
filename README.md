@@ -19,6 +19,7 @@ class Example extends React.Component {
           db={db}
           prefix='prefix'
           renderRow={ ({ value }) => <li>{value}</li> }
+          filter=({ value } => Number(value) > 0.5)
         />
       </div>
     )
@@ -46,7 +47,7 @@ $ npm install react-level-list
 
 ## API
 
-### `<List db [prefix renderRow] />`
+### `<List db [prefix renderRow filter] />`
 
 ## License
 

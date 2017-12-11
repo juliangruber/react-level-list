@@ -9,6 +9,7 @@ export class List extends React.Component {
   }
 
   add (key, value) {
+    if (!this.props.filter({ key, value })) return
     this.setState({
       items: Object.assign(this.state.items, { [key]: value })
     })
@@ -56,5 +57,6 @@ export class List extends React.Component {
 }
 
 List.defaultProps = {
-  prefix: ''
+  prefix: '',
+  filter: () => true
 }

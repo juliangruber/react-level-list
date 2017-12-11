@@ -22,6 +22,7 @@ class Example extends React.Component {
             db={db}
             prefix='prefix'
             renderRow={ ({ key, value }) => <li key={key}>{value}</li> }
+            filter={ ({ key, value }) => Number(value) > 0.5 }
           />
         </ul>
       </div>
