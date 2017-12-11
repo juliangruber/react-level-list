@@ -46,7 +46,7 @@ $ npm install react-level-list
 
 ## API
 
-### `<List db prefix renderRow />`
+### `<List db [prefix renderRow] />`
 
 ## License
 

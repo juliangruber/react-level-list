@@ -54,3 +54,7 @@ export class List extends React.Component {
     )
   }
 }
+
+List.defaultProps = {
+  prefix: ''
+}
