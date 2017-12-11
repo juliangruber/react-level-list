@@ -1,14 +1,11 @@
 import React from 'react'
 
 export class List extends React.Component {
-  constructor ({ db, prefix, renderRow }) {
+  constructor () {
     super()
     this.state = { items: {} }
     this.onput = this.onput.bind(this)
     this.ondel = this.ondel.bind(this)
-    this.db = db
-    this.prefix = prefix
-    this.renderRow = renderRow
   }
 
   add (key, value) {
@@ -23,27 +20,27 @@ export class List extends React.Component {
   }
 
   onput (key, value) {
-    if (key.startsWith(this.prefix)) this.add(key, value)
+    if (key.startsWith(this.props.prefix)) this.add(key, value)
   }
 
   ondel (key) {
-    if (key.startsWith(this.prefix)) this.remove(key)
+    if (key.startsWith(this.props.prefix)) this.remove(key)
   }
 
   componentDidMount () {
-    this.db.createReadStream({
-      gt: this.prefix,
-      lt: `${this.prefix}~`
+    this.props.db.createReadStream({
+      gt: this.props.prefix,
+      lt: `${this.props.prefix}~`
     }).on('data', ({ key, value }) => {
       this.add(key, value)
     })
-    this.db.on('put', this.onput)
-    this.db.on('del', this.ondel)
+    this.props.db.on('put', this.onput)
+    this.props.db.on('del', this.ondel)
   }
 
   componentWillUnmount () {
-    this.db.removeListener('put', this.onput)
-    this.db.removeListener('del', this.ondel)
+    this.props.db.removeListener('put', this.onput)
+    this.props.db.removeListener('del', this.ondel)
   }
 
   render () {
@@ -51,7 +48,7 @@ export class List extends React.Component {
       <div>
         {Object.keys(this.state.items).map(key => {
           const value = this.state.items[key]
-          return this.renderRow({ key, value })
+          return this.props.renderRow({ key, value })
         })}
       </div>
     )
